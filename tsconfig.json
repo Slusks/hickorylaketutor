@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -11,6 +11,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
+    "skipLibCheck": true,
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -18,10 +19,11 @@
       "es2018",
       "dom"
     ],
-    "baseURL": "src",
     "paths": {
       "@app/*": ["app/*"]
       },
+    
+    "resolveJsonModule": true
   },
 
   "angularCompilerOptions": {
