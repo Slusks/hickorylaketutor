@@ -13,7 +13,7 @@
 # profiling files
 chrome-profiler-events*.json
 speed-measure-plugin*.json
-firebase.HLT.environments.ts
+.firebase.HLT.environments.ts
 
 # IDEs and editors
 /.idea
