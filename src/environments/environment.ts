@@ -2,7 +2,7 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { HLT } from 'C:/Users/sam/webdev/hickorylaketutor/firebase.HLT.environment';
+import { HLT } from 'C:/Users/sam/webdev/enVAR/firebase.HLT.environment';
 
 
 export const environment = {

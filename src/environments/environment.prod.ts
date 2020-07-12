@@ -1,4 +1,4 @@
-import { HLT } from 'C:/Users/sam/webdev/hickorylaketutor/firebase.HLT.environment'
+import { HLT } from 'C:/Users/sam/webdev/enVar/firebase.HLT.environment'
 
 export const environment = {
   apiKey: HLT,

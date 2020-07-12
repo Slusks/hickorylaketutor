@@ -20,7 +20,8 @@
       "dom"
     ],
     "paths": {
-      "@app/*": ["app/*"]
+      "@app/*": ["app/*"],
+      "tslib": ["node_modules/tslib"]
       },
     
     "resolveJsonModule": true
