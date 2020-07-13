@@ -29,8 +29,7 @@ import { AuthService } from './auth.service';
     HomepageComponent,
     HeaderComponent,
     FooterComponent,
-    AngularFireAuthModule,
-    AngularFirestoreModule,
+
     DashboardComponent,
     SignInComponent,
     SignUpComponent,
@@ -41,6 +40,8 @@ import { AuthService } from './auth.service';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
