@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 import { HomepageComponent } from './home/homepage/homepage.component';
 import { HeaderComponent } from './home/header/header.component';
 import { FooterComponent } from './home/footer/footer.component';
@@ -12,38 +15,34 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { RegisterComponent } from './AuthenticationPackage/register/register.component';
+import { ProfileComponent } from './AuthenticationPackage/profile/profile.component';
+import { LoginComponent } from './AuthenticationPackage/login/login.component';
 
 
-
-import { DashboardComponent } from './Authentication/dashboard/dashboard.component';
-import { SignInComponent } from './Authentication/sign-in/sign-in.component';
-import { SignUpComponent } from './Authentication/sign-up/sign-up.component';
-import { ForgotPasswordComponent } from './Authentication/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from './Authentication/verify-email/verify-email.component';
-
-import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ProfileComponent,
+    RegisterComponent,
+    LoginComponent,
     HomepageComponent,
     HeaderComponent,
     FooterComponent,
 
-    DashboardComponent,
-    SignInComponent,
-    SignUpComponent,
-    ForgotPasswordComponent,
-    VerifyEmailComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [AuthService],
+  providers: [RegisterComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

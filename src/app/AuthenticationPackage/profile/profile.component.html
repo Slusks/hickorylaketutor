@@ -1,0 +1,46 @@
+
+<h1>User Profile</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="card" style="width: 50rem;">
+       <!-- <div *ngIf='user.provider == "password"'class="card-body">-->
+          <h4 class="card-title"></h4>
+          <p class="card-text">This is part of the profile component </p>
+          <h6>{{user.email}}</h6>
+        <!--</div>-->
+        <div *ngIf='userLoaded == true 'class="card-body">
+          <form [formGroup]="profileForm">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" formControlName="parentName" class="form-control" required>
+              <label>Last Name</label>
+              <input type="text" formControlName="lastName" class="form-control" required>
+              <label>E-mail</label>
+              <input type="email" formControlName="lastName" class="form-control" required>
+              <label>Child Name</label>
+              <input type="text" formControlName="child1" class="form-control" required>
+              <label>Child Grade</label>
+              <input type="text" formControlName="grade1" class="form-control" required>
+              <label>Subject of Interest</label>
+              <input type="text" formControlName="subject1" class="form-control" required>
+              <label>Child Name (If registering for multiple children)</label>
+              <input type="text" formControlName="child2" class="form-control">
+              <label>Child Grade (If registering for multiple children)</label>
+              <input type="text" formControlName="grade2" class="form-control">
+              <label>Subject of Interest (If registering for multiple children)</label>
+              <input type="text" formControlName="subject2" class="form-control">
+            </div>
+          </form>
+          <a (click)="save(profileForm.value, uid)" class="btn btn-primary">Save</a>
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <button class="btn btn-success" (click)=authService.signOut()>Sign Out</button>
+</div>
+
+        
