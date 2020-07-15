@@ -13,15 +13,27 @@
           <label class="error">{{errorMessage}}</label>
           <label class="success">{{successMessage}}</label>
         </div>
-        <button type="submit" (click)="registerUser_EP(registerForm.value)" class="btn btn-primary">Register</button>
+        <button type="submit" (click)="registerUser_EP(registerForm.value)" class="btn btn-success">Register</button>
       </form>
     </div>
+
   </div>
 
-  <!-- Other authentication providers: full code in GitHub Repository -->
+  <!-- Other authentication providers -->
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <button type="submit" (click)="registerUser_GU('registration')" class="btn btn-danger">Register with Google</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <button type="submit" (click)="registerUser_FB('registration')" class="btn btn-primary">Register with Facebook</button>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <p>Already have an account? <a href="/login">Login</a></p>
     </div>
   </div>
+
 </div>

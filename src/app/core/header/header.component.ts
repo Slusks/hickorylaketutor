@@ -13,15 +13,26 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private authService: AuthService
+    public authService: AuthService
   ) { }
 
   ngOnInit() {
   this.authService.user$.subscribe(response =>{
-    console.log("auth service response", response),
-    this.userLoaded=true,
-    this.userData = response;
+    //console.log("auth service response", response),
+    this.userData = response,
+    this.welcomeFunction(response)
   })
+
+
+    console.log("this.userLoaded", this.userLoaded)
   }
 
+
+welcomeFunction(data){
+  if (this.userData == null || undefined){
+    return this.userLoaded == false;
+  } else {this.userLoaded = true}
 }
+
+}
+

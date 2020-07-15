@@ -1,33 +1,46 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark" id="parentNavbar">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto">
-            <img src="../../../assets/pics/opt.jpg" height="50px" width="60px">
+            <a class="navbar-brand" ng-inline-svg="assets/pics/user-graduate-solid.svg" href="#">Home</a>
             <li class="nav-item active">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="/about">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
+                <a class="nav-link" href="/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/calendar">Calendar</a>
             </li>
         </ul>
     </div>
     <div class="mx-auto order-0">
-        <a class="navbar-brand mx-auto" href="#">
-             Hickory Lake Tutor
-        </a>
+        <div class="navbar-brand">
+            <div *ngIf="userLoaded == true">Welcome {{userData?.parentName}}!</div>
+            <div *ngIf="userLoaded !== true">Welcome!</div>
+        </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <div *ngIf="userLoaded == true">
-                    <h2 style="color:white;">Welcome {{userData.parentName}}</h2>
-                </div>  
-            </li>
+
+
+    <div class="navbar-collapse collapse order-3 dual-collapse2 " id="userOptions">
+        <ul class="navbar-nav w-100">
+        <div class="btn-group">
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              User Options
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/login">Sign In!</a>
+              <a class="dropdown-item" id="signOut" (click)=authService.signOut()>Sign Out!</a>
+              <div class="dropdown-divider"></div>
+              <p style="text-align: center;">No account yet?</p>
+              <a class="dropdown-item" href="/register">Register Now!</a>
+            </div>
+        </div>
         </ul>
     </div>
-  
+</nav>  
 
 
 

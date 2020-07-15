@@ -10,14 +10,16 @@ import { AuthGuard } from './AuthenticationPackage/core/auth.guard';
 import { LoginComponent } from './AuthenticationPackage/login/login.component';
 import { HomepageComponent } from './content/homepage/homepage.component';
 import { AboutpageComponent } from './content/aboutpage/aboutpage.component';
+import { CalendarpageComponent } from './content/calendarpage/calendarpage.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'home', pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent, /*canActivate: [AuthGuard]*/ },
   { path: 'register', component: RegisterComponent/*, canActivate: [AuthGuard]*/ },
   { path: 'profile', component: ProfileComponent, resolve: {data: ProfileResolver}},
-  { path: 'home', component: HomepageComponent, resolve: {data: ProfileResolver}},
-  { path: 'about', component: AboutpageComponent}
+  { path: 'home', component: HomepageComponent/*,resolve: {data: ProfileResolver}*/},
+  { path: 'about', component: AboutpageComponent},
+  { path: 'calendar', component: CalendarpageComponent, resolve: {data: ProfileResolver}}
 
 ];
 

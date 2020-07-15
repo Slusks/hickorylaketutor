@@ -4,11 +4,13 @@ import { Router, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../core/user.service';
 import * as firebase from 'firebase';
+import { auth } from 'firebase/app';
 import { User } from '../core/user1.model'
 import {
   AngularFirestore,
   AngularFirestoreDocument
 } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +26,8 @@ export class RegisterComponent{
   constructor(  private router: Router,
                 private fb: FormBuilder,
                 public userService: UserService,
-                private afs: AngularFirestore
+                private afs: AngularFirestore,
+                private afAuth: AngularFireAuth
               ) {this.createForm();
                 }
 
@@ -64,7 +67,7 @@ tryRegister(values){
 // new register user function, the EP refers to the email and password method of registering
   registerUser_EP(value){
     return firebase.auth().createUserWithEmailAndPassword(value.email, value.password).then(res =>{
-      alert("User Registered!"), console.log("res",res), this.router.navigate['/profile'];
+      alert("User Registered!"), /*console.log("res",res),*/ this.router.navigate['/profile'];
       this.tryRegister(res.user)
     }).catch(error => {
         alert(error.message),
@@ -73,8 +76,22 @@ tryRegister(values){
     })
   }
 
-  // Same as above except for someone registering using their google account. Will need similar for facebook
-  registerUser_GU(user){
-    this.tryRegister(user)
+  // Same as above except for someone registering using their google account.
+  async registerUser_GU(userData){
+    if (userData == 'registration'){
+      const provider = new auth.GoogleAuthProvider();
+      const credential = await this.afAuth.signInWithPopup(provider)
+      this.tryRegister(credential.user)
+    }
+    this.tryRegister(userData)
+  }
+  //Same as above except for someone registering using their Facebook account.
+  async registerUser_FB(userData){
+    if (userData == 'registration'){
+      const provider = new auth.FacebookAuthProvider();
+      const credential = await this.afAuth.signInWithPopup(provider)
+      this.tryRegister(credential.user)
+    }
+    this.tryRegister(userData)
   }
 }

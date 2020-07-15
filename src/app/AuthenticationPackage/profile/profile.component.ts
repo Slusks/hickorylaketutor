@@ -33,16 +33,8 @@ export class ProfileComponent implements OnInit {
   }
 
 ngOnInit() {
-  /*this.route.data.subscribe(routeData => {
-    let data = routeData['data'];
-    if (data) {
-      this.user = data;
-      console.log("user",this.user)
-    }
-    else {console.log("didn't grab data")}
-  })*/
   this.authService.user$.subscribe(response =>{
-    console.log("auth service response", response),
+    //console.log("auth service response", response),
     this.userLoaded=true,
     this.userData = response;
     this.createForm(response);

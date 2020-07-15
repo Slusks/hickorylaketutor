@@ -72,11 +72,28 @@ export class AuthService {
   this.router.navigate(['/home']) 
 }
 
+async FacebookSignin(){
+  const provider = new auth.FacebookAuthProvider();
+  const credential = await this.afAuth.signInWithPopup(provider)
+  try {
+    return this.userService.updateUserData(credential)
+  } catch (error){
+      try {
+        return this.register.registerUser_FB(credential.user)
+      }
+        catch (error){
+          console.log("error:", error)
+        }
+  } 
+
+this.router.navigate(['/home']) 
+}
+
   async signOut(){
     await this.afAuth.signOut();
     alert("Successfully Logged Out")
     console.log("Logged Out")
-    return this.router.navigate(['/']) // the example uses the empty / here but i'm routing to login directly for memory sake
+    this.router.navigate(['/home']) // the example uses the empty / here but i'm routing to login directly for memory sake
   }
 
 
