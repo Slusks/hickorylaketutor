@@ -16,9 +16,11 @@ import { ProfileResolver } from './profile.resolver';
 })
 export class ProfileComponent implements OnInit {
 
- 
-  user: FirebaseUserModel = new FirebaseUserModel();
+  userData;
+  //user: FirebaseUserModel = new FirebaseUserModel();
   profileForm: FormGroup;
+  userLoaded = false;
+  userUpdated: Boolean;
   
 
   constructor(
@@ -31,18 +33,18 @@ export class ProfileComponent implements OnInit {
   }
 
 ngOnInit() {
-  this.route.data.subscribe(routeData => {
+  /*this.route.data.subscribe(routeData => {
     let data = routeData['data'];
     if (data) {
       this.user = data;
       console.log("user",this.user)
     }
     else {console.log("didn't grab data")}
-  })
-
-
+  })*/
   this.authService.user$.subscribe(response =>{
     console.log("auth service response", response),
+    this.userLoaded=true,
+    this.userData = response;
     this.createForm(response);
   })}
 
@@ -68,5 +70,7 @@ ngOnInit() {
   }
 
   save(formValue){
-    this.userService.updateUserData(formValue) }
+    this.userService.updateUserData(formValue);
+    this.userUpdated = true; }
+    
   }

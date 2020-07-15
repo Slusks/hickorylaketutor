@@ -5,10 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
-import { HomepageComponent } from './home/homepage/homepage.component';
-import { HeaderComponent } from './home/header/header.component';
-import { FooterComponent } from './home/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http/'
 
 // Authentication for Firebase is all coming from here: https://www.positronx.io/full-angular-7-firebase-authentication-system/
 import { AngularFireModule } from "@angular/fire";
@@ -19,6 +16,9 @@ import { RegisterComponent } from './AuthenticationPackage/register/register.com
 import { ProfileComponent } from './AuthenticationPackage/profile/profile.component';
 import { LoginComponent } from './AuthenticationPackage/login/login.component';
 
+import { CoreModule } from './core/core.module';
+import { ContentModule } from './content/content.module';
+
 
 
 @NgModule({
@@ -27,11 +27,6 @@ import { LoginComponent } from './AuthenticationPackage/login/login.component';
     ProfileComponent,
     RegisterComponent,
     LoginComponent,
-    HomepageComponent,
-    HeaderComponent,
-    FooterComponent,
-
-
   ],
   imports: [
     BrowserModule,
@@ -40,7 +35,10 @@ import { LoginComponent } from './AuthenticationPackage/login/login.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     ReactiveFormsModule,
-    FormsModule
+    HttpClientModule,
+    FormsModule,
+    CoreModule,
+    ContentModule
   ],
   providers: [RegisterComponent],
   bootstrap: [AppComponent]

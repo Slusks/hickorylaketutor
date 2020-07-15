@@ -8,12 +8,17 @@ import { RegisterComponent } from './AuthenticationPackage/register/register.com
 import { ProfileResolver } from './AuthenticationPackage/profile/profile.resolver';
 import { AuthGuard } from './AuthenticationPackage/core/auth.guard';
 import { LoginComponent } from './AuthenticationPackage/login/login.component';
+import { HomepageComponent } from './content/homepage/homepage.component';
+import { AboutpageComponent } from './content/aboutpage/aboutpage.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent/*, canActivate: [AuthGuard]*/ },
-  { path: 'profile', component: ProfileComponent,  resolve: { data: ProfileResolver}}
+  { path: 'profile', component: ProfileComponent, resolve: {data: ProfileResolver}},
+  { path: 'home', component: HomepageComponent, resolve: {data: ProfileResolver}},
+  { path: 'about', component: AboutpageComponent}
+
 ];
 
 @NgModule({
