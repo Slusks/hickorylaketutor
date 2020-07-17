@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
     "@ng-bootstrap/ng-bootstrap": "^5.3.1",
+    "@ng-bootstrap/schematics": "^2.0.0-alpha.1",
     "angular-calendar": "^0.28.16",
     "angularfire2": "^5.4.2",
     "bootstrap": "^4.5.0",

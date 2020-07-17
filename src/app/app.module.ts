@@ -18,6 +18,7 @@ import { LoginComponent } from './AuthenticationPackage/login/login.component';
 
 import { CoreModule } from './core/core.module';
 import { ContentModule } from './content/content.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -38,7 +39,8 @@ import { ContentModule } from './content/content.module';
     HttpClientModule,
     FormsModule,
     CoreModule,
-    ContentModule
+    ContentModule,
+    NgbModule.forRoot()
   ],
   providers: [RegisterComponent],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
+  OnInit
 } from '@angular/core';
 import {
   startOfDay,
@@ -15,7 +16,7 @@ import {
   addHours,
 } from 'date-fns';
 import { Subject } from 'rxjs';
-import { NgbModal } from '../../../../node_modules/ng-bootstrap/'; /**/
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -39,20 +40,17 @@ const colors: any = {
 };
 
 @Component({
-  selector: 'mwl-demo-component',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['styles.css'],
-  templateUrl: 'template.html',
+  selector: 'app-calendarpage',
+  templateUrl: './calendarpage.component.html',
+  styleUrls: ['./calendarpage.component.scss']
 })
 export class CalendarpageComponent {
+
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
-
   CalendarView = CalendarView;
-
   viewDate: Date = new Date();
-
   modalData: {
     action: string;
     event: CalendarEvent;
@@ -121,7 +119,7 @@ export class CalendarpageComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal) { }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -188,4 +186,5 @@ export class CalendarpageComponent {
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
   }
+
 }
