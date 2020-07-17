@@ -75,53 +75,17 @@ export class CalendarpageComponent {
   ];
 
   refresh: Subject<any> = new Subject();
-
+/* This is going to need to be replaced with a function for people to add events*/
   events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
+   
   ];
 
-  activeDayIsOpen: boolean = true;
+  activeDayIsOpen: boolean = false;
 
   constructor(private modal: NgbModal) { }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    console.log("events.length", events.length)
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
@@ -157,7 +121,7 @@ export class CalendarpageComponent {
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
   }
-
+/*This will also need to be edited with a firestore subscription*/
   addEvent(): void {
     this.events = [
       ...this.events,
@@ -173,6 +137,10 @@ export class CalendarpageComponent {
         },
       },
     ];
+  }
+
+  submitEvent(): void{
+    alert("In work")
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {

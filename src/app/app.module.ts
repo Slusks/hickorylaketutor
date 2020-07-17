@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,7 +19,7 @@ import { LoginComponent } from './AuthenticationPackage/login/login.component';
 
 import { CoreModule } from './core/core.module';
 import { ContentModule } from './content/content.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -31,6 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
@@ -40,7 +42,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     CoreModule,
     ContentModule,
-    NgbModule.forRoot()
   ],
   providers: [RegisterComponent],
   bootstrap: [AppComponent]
