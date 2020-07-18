@@ -23,6 +23,8 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
+import {CalendarPageService } from '../calendarpage.service'
+import { AuthService } from '@app/AuthenticationPackage/core/auth.service';
 
 const colors: any = {
   red: {
@@ -44,7 +46,10 @@ const colors: any = {
   templateUrl: './calendarpage.component.html',
   styleUrls: ['./calendarpage.component.scss']
 })
-export class CalendarpageComponent {
+export class CalendarpageComponent implements OnInit{
+
+
+
 
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
@@ -81,8 +86,20 @@ export class CalendarpageComponent {
   ];
 
   activeDayIsOpen: boolean = false;
+  userData;
+  constructor(
+    private modal: NgbModal,
+    public calService: CalendarPageService,
+    public authService: AuthService) { }
 
-  constructor(private modal: NgbModal) { }
+
+  ngOnInit(){
+    this.authService.user$.subscribe(response => {this.userData = response, console.log('response', response)})
+  }
+
+
+
+
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     console.log("events.length", events.length)

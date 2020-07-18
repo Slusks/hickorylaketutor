@@ -1,4 +1,17 @@
 <div class="jumbotron">
+  <div *ngIf="userData">
+      {{userData.sessions | json}}      
+  </div>
+  
+</div>
+
+
+
+
+
+
+
+<div class="jumbotron">
 <div class="row text-center">
     <div class="col-md-4">
       <div class="btn-group">
@@ -91,7 +104,7 @@
     </mwl-calendar-day-view>
   </div>
   
-  <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
+  <!-- Everything below this line is for editing events -->
   
   <br /><br /><br />
   
