@@ -9,6 +9,7 @@ import { adapterFactory } from '../../../node_modules/angular-calendar/date-adap
 import { FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 
 
@@ -28,7 +29,8 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    AngularFireDatabaseModule
   ],
   providers:[CalendarPageService]
 })

@@ -26,8 +26,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     public userService: UserService,
     public authService: AuthService,
-    private route: ActivatedRoute,
-    private fb: FormBuilder,
+    private fb: FormBuilder
   ) {
 
   }

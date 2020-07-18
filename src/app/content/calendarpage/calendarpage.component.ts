@@ -15,7 +15,7 @@ import {
   isSameMonth,
   addHours,
 } from 'date-fns';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
@@ -25,6 +25,8 @@ import {
 } from 'angular-calendar';
 import {CalendarPageService } from '../calendarpage.service'
 import { AuthService } from '@app/AuthenticationPackage/core/auth.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 const colors: any = {
   red: {
@@ -81,20 +83,32 @@ export class CalendarpageComponent implements OnInit{
 
   refresh: Subject<any> = new Subject();
 /* This is going to need to be replaced with a function for people to add events*/
-  events: CalendarEvent[] = [
-   
-  ];
+events: CalendarEvent[] = [
+  {
+    title: 'An event',
+    start: new Date(),
+    color: colors.red,
+  },
+];
 
   activeDayIsOpen: boolean = false;
-  userData;
+  public userData;
+  public userAuth;
+
   constructor(
     private modal: NgbModal,
     public calService: CalendarPageService,
-    public authService: AuthService) { }
+    public authService: AuthService,
+    public db: AngularFirestore,
+    public afd: AngularFireDatabase) {
+
+      //this.authService.user$.subscribe(res =>{this.userAuth = res, console.log("res", res)})    
+      this.userData = db.collection('/Session').valueChanges();
+     }
 
 
   ngOnInit(){
-    this.authService.user$.subscribe(response => {this.userData = response, console.log('response', response)})
+    
   }
 
 

@@ -1,8 +1,10 @@
+
+<!-- Extracting the date from a firestore db in order to see if I can use the firestore DB to store sessions-->
+<!-- only really worth it if i I can figure out how to programmatically write back into, otherwise it will take too much effort to keep updated-->
 <div class="jumbotron">
-  <div *ngIf="userData">
-      {{userData.sessions | json}}      
-  </div>
-  
+  <li *ngFor="let data of userData | async">
+    <p>{{data["18"]["Session1"]["startTime"].toDate()}}</p> 
+  </li>
 </div>
 
 

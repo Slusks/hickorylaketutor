@@ -16,10 +16,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, /*canActivate: [AuthGuard]*/ },
   { path: 'register', component: RegisterComponent/*, canActivate: [AuthGuard]*/ },
-  { path: 'profile', component: ProfileComponent, resolve: {data: ProfileResolver}},
-  { path: 'home', component: HomepageComponent/*,resolve: {data: ProfileResolver}*/},
+  { path: 'profile', component: ProfileComponent /*resolve: {data: ProfileResolver}*/},
+  { path: 'home', component: HomepageComponent},
   { path: 'about', component: AboutpageComponent},
-  { path: 'calendar', component: CalendarpageComponent, resolve: {data: ProfileResolver}}
+  { path: 'calendar', component: CalendarpageComponent}
 
 ];
 
