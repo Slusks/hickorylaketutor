@@ -27,6 +27,8 @@ import {CalendarPageService } from '../calendarpage.service'
 import { AuthService } from '@app/AuthenticationPackage/core/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { customEvent } from './customEvent'
+import { FormBuilder } from '@angular/forms';
 
 const colors: any = {
   red: {
@@ -83,33 +85,60 @@ export class CalendarpageComponent implements OnInit{
 
   refresh: Subject<any> = new Subject();
 /* This is going to need to be replaced with a function for people to add events*/
-events: CalendarEvent[] = [
+events: CalendarEvent[]; /* = [
   {
     title: 'An event',
     start: new Date(),
     color: colors.red,
   },
-];
+];*/
 
   activeDayIsOpen: boolean = false;
+  public sessionData;
   public userData;
   public userAuth;
+  public userEvents;
+  public userForm;
 
   constructor(
     private modal: NgbModal,
     public calService: CalendarPageService,
     public authService: AuthService,
     public db: AngularFirestore,
-    public afd: AngularFireDatabase) {
+    public afd: AngularFireDatabase,
+    private fb: FormBuilder) {
 
-      //this.authService.user$.subscribe(res =>{this.userAuth = res, console.log("res", res)})    
-      this.userData = db.collection('/Session').valueChanges();
+      this.authService.user$.subscribe(res =>{this.userAuth = res, console.log("res", res)})
+    
+      this.userData = db.collection(`/users`).valueChanges();
+          
+      this.sessionData = db.collection('/sessions').valueChanges().subscribe((res:CalendarEvent[]) =>{
+        this.events = res, 
+        console.log("events", this.events),
+        this.userForm(res)})
+        /*What I think i need to do here is right a function that converts the incoming firebase output to an event object*/
      }
 
 
   ngOnInit(){
-    
+    let testDate = new Date().getTime()
+    console.log(testDate)
+ 
   }
+
+
+  createForm(userInfo) {
+    this.userForm = this.fb.group({
+      lastName: [userInfo.lastName]
+
+    });
+  }
+/*
+  save(formValue){
+    this.userService.updateUserData(formValue);
+    this.userUpdated = true; }
+    
+  }*/
 
 
 
@@ -157,7 +186,7 @@ events: CalendarEvent[] = [
     this.events = [
       ...this.events,
       {
-        title: 'New event',
+        title: this.userData.lastName || "Open Session",
         start: startOfDay(new Date()),
         end: endOfDay(new Date()),
         color: colors.red,
